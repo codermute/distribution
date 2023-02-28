@@ -1,0 +1,54 @@
+/*预设样式*/
+img {
+  border: none;
+  max-width: 100%;
+  vertical-align: top;
+}
+input {
+  outline: none;
+  border: none;
+  vertical-align: top;
+  background-clip: text;
+  background-color: transparent;
+}
+a {
+  text-decoration: none;
+  outline: none;
+}
+.ovf-hidn {
+  overflow: hidden;
+}
+.clr {
+  clear: both;
+}
+.clearfix::after {
+  display: block;
+  content: '';
+  clear: both;
+  width: 0;
+  height: 0;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.float-no {
+  float: none !important;
+}
+.align-lf {
+  text-align: left !important;
+}
+.align-rt {
+  text-align: right !important;
+}
+.text-elps {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.space {
+  height: 1.6rem;
+}
