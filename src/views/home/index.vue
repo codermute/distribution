@@ -161,7 +161,7 @@ const submitClickHandle = debounce(
     if (!formOutput.detailed) return showToast('请填写详细地址')
     if (!isOnShow.value) return showToast('请勾选入网许可协议')
 
-    console.log(formOutput)
+    console.log({ ...formOutput })
   },
   300,
   true
