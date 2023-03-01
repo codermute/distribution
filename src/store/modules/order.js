@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
-export const useHomeStore = defineStore({
-  id: 'home',
+export const useOrderStore = defineStore({
+  id: 'order',
   state: () => ({
     phoneReg:
       /^(((13[0-9]{1})|(15[0-9]{1})|(16[0-9]{1})|(17[3-8]{1})|(18[0-9]{1})|(19[0-9]{1})|(14[5-7]{1}))+\d{8})$/,

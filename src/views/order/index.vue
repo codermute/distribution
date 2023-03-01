@@ -14,12 +14,12 @@
               </div>
               <div class="r_inner">
                 <input
+                  class="r_inner_inp"
                   :type="item.type ?? 'text'"
-                  v-model="formOutput[item.field]"
                   :placeholder="item.placeholder"
                   :readonly="item.readonly"
-                  class="r_inner_inp"
                   :autoComplete="item.autoComplete"
+                  v-model="formOutput[item.field]"
                   @click="addressClickHandle(item)"
                 />
               </div>
@@ -116,7 +116,7 @@
 import { reactive, ref } from 'vue'
 import { Popup, Area, showToast } from 'vant'
 import { areaList } from '@vant/area-data'
-import { useHomeStore } from '@/store'
+import { useOrderStore } from '@/store'
 
 import { formList, introduceList } from './config'
 import { privacy, netin, debounce } from '@/utils'
@@ -125,7 +125,7 @@ import useTitle from '@/hooks/useTitle.js'
 import agreementPopup from '@/components/agreement-popup'
 
 useTitle('29元65G')
-const store = useHomeStore()
+const store = useOrderStore()
 
 const formOutput = reactive({
   name: '',
@@ -169,7 +169,7 @@ const submitClickHandle = debounce(
 </script>
 
 <style scoped>
-@import '../../assets/css/home/style.css';
+@import '../../assets/css/order/style.css';
 input {
   background-clip: text;
 }
