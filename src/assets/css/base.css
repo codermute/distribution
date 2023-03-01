@@ -8,7 +8,6 @@ input {
   outline: none;
   border: none;
   vertical-align: top;
-  background-clip: text;
   background-color: transparent;
 }
 a {

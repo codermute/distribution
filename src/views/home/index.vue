@@ -13,24 +13,15 @@
                 >:
               </div>
               <div class="r_inner">
-                <template v-if="item.field === 'address'">
-                  <input
-                    type="text"
-                    v-model="formOutput[item.field]"
-                    :placeholder="item.placeholder"
-                    class="r_inner_inp"
-                    readonly
-                    @click="isAreaShow = true"
-                /></template>
-                <template v-else>
-                  <input
-                    :type="item.type ?? 'text'"
-                    v-model="formOutput[item.field]"
-                    :placeholder="item.placeholder"
-                    class="r_inner_inp"
-                    :autoComplete="item.autoComplete"
-                  />
-                </template>
+                <input
+                  :type="item.type ?? 'text'"
+                  v-model="formOutput[item.field]"
+                  :placeholder="item.placeholder"
+                  :readonly="item.readonly"
+                  class="r_inner_inp"
+                  :autoComplete="item.autoComplete"
+                  @click="addressClickHandle(item)"
+                />
               </div>
             </div>
           </template>
@@ -149,6 +140,10 @@ const isOpenShow = ref(false)
 const isPrivacyShow = ref(false)
 const isNetinShow = ref(false)
 
+function addressClickHandle(item) {
+  if (item.field !== 'address') return
+  isAreaShow.value = true
+}
 function areaClickHandle(options) {
   formOutput.address = options.selectedOptions
     .map((item) => item.text)
@@ -173,6 +168,9 @@ const submitClickHandle = debounce(
 )
 </script>
 
-<style>
+<style scoped>
 @import '../../assets/css/home/style.css';
+input {
+  background-clip: text;
+}
 </style>
