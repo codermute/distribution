@@ -1,7 +1,7 @@
 <template>
   <div class="main-box">
     <div class="content-box">
-      <div class="cpn-title">自发展订单</div>
+      <headTitle title="自发展订单" />
       <div class="cpn-table">
         <table class="table" cellspacing="0">
           <thead>
@@ -73,7 +73,7 @@
           </tbody>
         </table>
       </div>
-      <div class="cpn-title">裂变发展订单</div>
+      <headTitle title="裂变发展订单" />
       <div class="cpn-table">
         <table class="table" cellspacing="0">
           <thead>
@@ -109,7 +109,7 @@
           </tbody>
         </table>
       </div>
-      <div class="cpn-title">我的商机订单</div>
+      <headTitle title="我的商机订单" />
       <p style="padding-bottom: 0.2rem">
         (商机单是指:下单未完成或下单后未激活充值的的订单)
       </p>
@@ -187,6 +187,10 @@
     </div>
   </div>
 </template>
+
+<script setup>
+import headTitle from '@/components/head-title'
+</script>
 
 <style>
 @import '../../assets/css/home/style.css';
