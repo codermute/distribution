@@ -18,14 +18,8 @@
       </div>
       <div class="home-record">
         <div class="record-list clearfix">
-          <div class="record-item">
-            <div class="record-num">30,000</div>
-            <div class="record-name">累计收入</div>
-          </div>
-          <div class="record-item">
-            <div class="record-num">10,000</div>
-            <div class="record-name">昨日收入</div>
-          </div>
+          <recordItem num="30,000" name="累计收入" />
+          <recordItem num="10,000" name="昨日收入" />
         </div>
       </div>
     </div>
@@ -63,6 +57,7 @@ import { useRouter } from 'vue-router'
 
 import { menuList } from './config'
 
+import recordItem from '@/components/record-item'
 import productItem from '@/components/product-item'
 import headTltle from '@/components/head-title'
 import earningsPopup from '@/components/earnings-popup'

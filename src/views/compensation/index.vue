@@ -8,14 +8,8 @@
       </p>
       <div class="home-record">
         <div class="record-list clearfix">
-          <div class="record-item">
-            <div class="record-num">30,000</div>
-            <div class="record-name">累计奖励金额</div>
-          </div>
-          <div class="record-item">
-            <div class="record-num">10,000</div>
-            <div class="record-name">昨日到账奖励</div>
-          </div>
+          <recordItem num="30,000" name="累计奖励金额" />
+          <recordItem num="10,000" name="昨日到账奖励" />
         </div>
       </div>
     </div>
@@ -45,6 +39,7 @@
 import { ref } from 'vue'
 import { propList, listData } from './config'
 
+import recordItem from '@/components/record-item'
 import earningsPopup from '@/components/earnings-popup'
 import headTitle from '@/components/head-title'
 import hlTable from '@/components/hl-table'

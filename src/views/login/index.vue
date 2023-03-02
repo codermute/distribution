@@ -44,12 +44,12 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import { CountDown, showToast } from 'vant'
-import { useOrderStore } from '@/store'
+import { useLoginStore } from '@/store'
 
 import { formList } from './config'
 import { debounce } from '@/utils'
 
-const store = useOrderStore()
+const store = useLoginStore()
 
 const formOutput = reactive({
   phone: '',
