@@ -20,128 +20,14 @@
       </div>
     </div>
     <div class="content-box">
-      <div class="cpn-title">我的发展酬金</div>
+      <headTitle title="我的发展酬金" />
       <div class="cpn-table">
-        <table class="table" cellspacing="0">
-          <thead>
-            <tr>
-              <th>发展人</th>
-              <th>酬金类型</th>
-              <th>下发奖励<br />时间</th>
-              <th>用户</th>
-              <th>金额</th>
-              <th>结算状态</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>张三</td>
-              <td>激活奖励</td>
-              <td>2023-01-01</td>
-              <td>李四</td>
-              <td>10</td>
-              <td>已结算</td>
-            </tr>
-            <tr>
-              <td>张三</td>
-              <td>激活奖励</td>
-              <td>2023-01-01</td>
-              <td>李四</td>
-              <td>10</td>
-              <td>已结算</td>
-            </tr>
-            <tr>
-              <td>张三</td>
-              <td>激活奖励</td>
-              <td>2023-01-01</td>
-              <td>李四</td>
-              <td>10</td>
-              <td>已结算</td>
-            </tr>
-            <tr>
-              <td>张三</td>
-              <td>激活奖励</td>
-              <td>2023-01-01</td>
-              <td>李四</td>
-              <td>10</td>
-              <td>已结算</td>
-            </tr>
-          </tbody>
-        </table>
+        <hlTable :propList="propList" :listData="listData" />
         <div class="total">合计：2222元</div>
       </div>
-      <div class="cpn-title">我的商机(促成订单激活充值在网可获得酬金)</div>
+      <headTitle title="我的商机(促成订单激活充值在网可获得酬金)" />
       <div class="cpn-table">
-        <table class="table" cellspacing="0">
-          <thead>
-            <tr>
-              <th>发展人</th>
-              <th>酬金类型</th>
-              <th>下发奖励<br />时间</th>
-              <th>用户</th>
-              <th>金额</th>
-              <th>结算状态</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>张三</td>
-              <td>激活奖励</td>
-              <td>2023-01-01</td>
-              <td>李四</td>
-              <td>10</td>
-              <td>已结算</td>
-            </tr>
-            <tr>
-              <td>张三</td>
-              <td>激活奖励</td>
-              <td>2023-01-01</td>
-              <td>李四</td>
-              <td>10</td>
-              <td>已结算</td>
-            </tr>
-            <tr>
-              <td>张三</td>
-              <td>激活奖励</td>
-              <td>2023-01-01</td>
-              <td>李四</td>
-              <td>10</td>
-              <td>已结算</td>
-            </tr>
-            <tr>
-              <td>张三</td>
-              <td>激活奖励</td>
-              <td>2023-01-01</td>
-              <td>李四</td>
-              <td>10</td>
-              <td>已结算</td>
-            </tr>
-            <tr>
-              <td>张三</td>
-              <td>激活奖励</td>
-              <td>2023-01-01</td>
-              <td>李四</td>
-              <td>10</td>
-              <td>已结算</td>
-            </tr>
-            <tr>
-              <td>张三</td>
-              <td>激活奖励</td>
-              <td>2023-01-01</td>
-              <td>李四</td>
-              <td>10</td>
-              <td>已结算</td>
-            </tr>
-            <tr>
-              <td>张三</td>
-              <td>激活奖励</td>
-              <td>2023-01-01</td>
-              <td>李四</td>
-              <td>10</td>
-              <td>已结算</td>
-            </tr>
-          </tbody>
-        </table>
+        <hlTable :propList="propList" :listData="listData" />
         <div class="total">合计：2222元</div>
       </div>
       <p>备注:订单详情请去我的订单页面查看</p>
@@ -157,8 +43,11 @@
 
 <script setup>
 import { ref } from 'vue'
+import { propList, listData } from './config'
 
 import earningsPopup from '@/components/earnings-popup'
+import headTitle from '@/components/head-title'
+import hlTable from '@/components/hl-table'
 
 const isEarningShow = ref(false)
 </script>
