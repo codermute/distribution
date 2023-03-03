@@ -8,7 +8,9 @@
     <tbody>
       <tr v-for="item in listData" :key="item">
         <td v-for="key in keys" :key="key">
-          {{ item[key] }}
+          <slot :name="key" :row="item">
+            {{ item[key] || '--' }}
+          </slot>
         </td>
       </tr>
     </tbody>
