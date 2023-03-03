@@ -48,8 +48,11 @@ import { useLoginStore } from '@/store'
 
 import { formList } from './config'
 import { debounce } from '@/utils'
+import useTltle from '@/hooks/useTitle.js'
 
 const store = useLoginStore()
+
+useTltle('注册')
 
 const formOutput = reactive({
   phone: '',

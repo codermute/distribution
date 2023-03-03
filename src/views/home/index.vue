@@ -56,6 +56,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 import { menuList } from './config'
+import useTltle from '@/hooks/useTitle.js'
 
 import recordItem from '@/components/record-item'
 import productItem from '@/components/product-item'
@@ -63,6 +64,8 @@ import headTltle from '@/components/head-title'
 import earningsPopup from '@/components/earnings-popup'
 
 const router = useRouter()
+
+useTltle('裂变活动')
 
 const isEarningShow = ref(false)
 

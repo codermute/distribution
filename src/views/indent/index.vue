@@ -22,9 +22,12 @@
 
 <script setup>
 import { propList, listData } from './config'
+import useTltle from '@/hooks/useTitle.js'
 
 import headTitle from '@/components/head-title'
 import hlTable from '@/components/hl-table'
+
+useTltle('我的订单')
 </script>
 
 <style>

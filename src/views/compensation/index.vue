@@ -37,12 +37,16 @@
 
 <script setup>
 import { ref } from 'vue'
+
 import { propList, listData } from './config'
+import useTltle from '@/hooks/useTitle.js'
 
 import recordItem from '@/components/record-item'
 import earningsPopup from '@/components/earnings-popup'
 import headTitle from '@/components/head-title'
 import hlTable from '@/components/hl-table'
+
+useTltle('我的酬金')
 
 const isEarningShow = ref(false)
 </script>

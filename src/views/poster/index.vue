@@ -9,6 +9,12 @@
   </div>
 </template>
 
+<script setup>
+import useTltle from '@/hooks/useTitle.js'
+
+useTltle('分享海报')
+</script>
+
 <style>
 @import '../../assets/css/home/style.css';
 </style>
