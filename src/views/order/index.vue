@@ -21,6 +21,7 @@
                   :autoComplete="item.autoComplete"
                   v-model="formOutput[item.field]"
                   @click="addressClickHandle(item)"
+                  @change="changeCheckOrder(item)"
                 />
               </div>
             </div>
@@ -119,7 +120,7 @@ import { areaList } from '@vant/area-data'
 import { useOrderStore } from '@/store'
 
 import { formList, introduceList } from './config'
-import { privacy, netin, debounce } from '@/utils'
+import { privacy, netin, debounce, getUrlSearch } from '@/utils'
 import useTitle from '@/hooks/useTitle.js'
 
 import agreementPopup from '@/components/agreement-popup'
@@ -151,6 +152,12 @@ function areaClickHandle(options) {
   isAreaShow.value = false
 }
 
+const changeCheckOrder = (item) => {
+  if (item.field !== 'id') return
+  const data = { custName: formOutput.name, custNo: formOutput.id }
+  store.checkOrderIdentity(data)
+}
+
 const submitClickHandle = debounce(
   () => {
     if (!formOutput.name) return showToast('请填写客户姓名')
@@ -161,7 +168,24 @@ const submitClickHandle = debounce(
     if (!formOutput.detailed) return showToast('请填写详细地址')
     if (!isOnShow.value) return showToast('请勾选入网许可协议')
 
-    console.log({ ...formOutput })
+    const addressInfos = formOutput.address.split(' ')
+    const memberId =
+      getUrlSearch('memberId') || '9a7d666af577416b96eb3d0c3dd04181'
+    const productId = getUrlSearch('productId') || 'DX1000029'
+    console.log(memberId, productId)
+    const data = {
+      orderProv: addressInfos[0],
+      orderCity: addressInfos[1],
+      orderDis: addressInfos[2],
+      orderAddress: formOutput.detailed,
+      memberId,
+      custName: formOutput.name,
+      custNo: formOutput.id,
+      orderMobile: formOutput.phone,
+      productId
+    }
+    console.log(data)
+    store.changeCreateOrder(data)
   },
   300,
   true
