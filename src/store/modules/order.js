@@ -14,7 +14,6 @@ export const useOrderStore = defineStore({
   actions: {
     async checkOrderIdentity(data) {
       const res = await changeAuthentication(data)
-      console.log(res)
       if (!res.code) return
       showToast(res.message)
     },

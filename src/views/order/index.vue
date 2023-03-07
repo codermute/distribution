@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <img src="@/assets/images/tou_sn.jpg" />
-    <img style="display: none" src="@/assets/images/tou_sw.jpg" />
+    <img v-if="false" src="@/assets/images/tou_sw.jpg" />
     <div class="info-box">
       <div class="input-wrap">
         <div class="inp-content">
@@ -126,6 +126,7 @@ import useTitle from '@/hooks/useTitle.js'
 import agreementPopup from '@/components/agreement-popup'
 
 useTitle('29元65G')
+
 const store = useOrderStore()
 
 const formOutput = reactive({
@@ -172,7 +173,6 @@ const submitClickHandle = debounce(
     const memberId =
       getUrlSearch('memberId') || '9a7d666af577416b96eb3d0c3dd04181'
     const productId = getUrlSearch('productId') || 'DX1000029'
-    console.log(memberId, productId)
     const data = {
       orderProv: addressInfos[0],
       orderCity: addressInfos[1],
@@ -184,7 +184,7 @@ const submitClickHandle = debounce(
       orderMobile: formOutput.phone,
       productId
     }
-    console.log(data)
+
     store.changeCreateOrder(data)
   },
   300,
