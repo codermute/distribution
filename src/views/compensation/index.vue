@@ -37,6 +37,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useComStore } from '@/store'
 
 import { propList, listData } from './config'
 import useTltle from '@/hooks/useTitle.js'
@@ -47,6 +48,10 @@ import headTitle from '@/components/head-title'
 import hlTable from '@/components/hl-table'
 
 useTltle('我的酬金')
+
+const store = useComStore()
+
+store.getActivityList()
 
 const isEarningShow = ref(false)
 </script>

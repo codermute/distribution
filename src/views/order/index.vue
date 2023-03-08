@@ -185,7 +185,9 @@ const submitClickHandle = debounce(
       productId
     }
 
-    store.changeCreateOrder(data)
+    store.changeCreateOrder(data).then((res) => {
+      console.log(res)
+    })
   },
   300,
   true

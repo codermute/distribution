@@ -8,8 +8,8 @@
 <script setup>
 defineProps({
   num: {
-    type: String,
-    defalut: ''
+    type: [String, Number],
+    defalut: '0.00'
   },
   name: {
     type: String,

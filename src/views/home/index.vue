@@ -18,8 +18,8 @@
       </div>
       <div class="home-record">
         <div class="record-list clearfix">
-          <recordItem num="30,000" name="累计收入" />
-          <recordItem num="10,000" name="昨日收入" />
+          <recordItem :num="store.balanceInfo.accountMoney" name="累计收入" />
+          <recordItem :num="store.balanceInfo.ydayMoney" name="昨日收入" />
         </div>
       </div>
     </div>
@@ -54,6 +54,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useHomeStore } from '@/store'
 
 import { menuList } from './config'
 import useTltle from '@/hooks/useTitle.js'
@@ -63,9 +64,12 @@ import productItem from '@/components/product-item'
 import headTltle from '@/components/head-title'
 import earningsPopup from '@/components/earnings-popup'
 
-const router = useRouter()
-
 useTltle('裂变活动')
+
+const router = useRouter()
+const store = useHomeStore()
+
+store.getMemberBalance()
 
 const isEarningShow = ref(false)
 

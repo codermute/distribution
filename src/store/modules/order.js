@@ -19,6 +19,7 @@ export const useOrderStore = defineStore({
     async changeCreateOrder(payload) {
       const res = await createOrder(payload)
       console.log(res)
+      if (res.code) return showToast(res.message)
     }
   }
 })
