@@ -12,13 +12,12 @@ export const useOrderStore = defineStore({
       /(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)/
   }),
   actions: {
-    async checkOrderIdentity(data) {
-      const res = await changeAuthentication(data)
-      if (!res.code) return
-      showToast(res.message)
+    async checkOrderIdentity(payload) {
+      const res = await changeAuthentication(payload)
+      if (res.code) return showToast(res.message)
     },
-    async changeCreateOrder(data) {
-      const res = await createOrder(data)
+    async changeCreateOrder(payload) {
+      const res = await createOrder(payload)
       console.log(res)
     }
   }
