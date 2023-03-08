@@ -18,8 +18,9 @@ export const useOrderStore = defineStore({
     },
     async changeCreateOrder(payload) {
       const res = await createOrder(payload)
-      console.log(res)
       if (res.code) return showToast(res.message)
+      window.location.href =
+        'http://flow.hn.189.cn/hnfx/hd/hlwkczindex?orderid=87ff8bd41d63201d3a10a2672268bf311c6868be97060502&username=2fd4e36a201cb4801f14d5ab99776fce&cardid=eac226f8856ab261d6bc3e62a61822fdd785090feb898d52&clientid=lblxhlwyl'
     }
   }
 })

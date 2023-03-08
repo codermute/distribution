@@ -142,6 +142,9 @@ const isOpenShow = ref(false)
 const isPrivacyShow = ref(false)
 const isNetinShow = ref(false)
 
+const memberId = getUrlSearch('memberId') || '9a7d666af577416b96eb3d0c3dd04181'
+const productId = getUrlSearch('productId') || 'DX1000029'
+
 function addressClickHandle(item) {
   if (item.field !== 'address') return
   isAreaShow.value = true
@@ -153,10 +156,18 @@ function areaClickHandle(options) {
   isAreaShow.value = false
 }
 
-const changeCheckOrder = (item) => {
-  if (item.field !== 'id') return
-  const data = { custName: formOutput.name, custNo: formOutput.id }
-  store.checkOrderIdentity(data)
+const changeCheckOrder = async (item) => {
+  if (item.field !== 'phone') return
+  const data = {
+    custName: formOutput.name,
+    custNo: formOutput.id,
+    phone: formOutput.phone,
+    productId,
+    memberId
+  }
+
+  const result = await store.checkOrderIdentity(data)
+  console.log(!result)
 }
 
 const submitClickHandle = debounce(
@@ -170,10 +181,8 @@ const submitClickHandle = debounce(
     if (!isOnShow.value) return showToast('请勾选入网许可协议')
 
     const addressInfos = formOutput.address.split(' ')
-    const memberId =
-      getUrlSearch('memberId') || '9a7d666af577416b96eb3d0c3dd04181'
-    const productId = getUrlSearch('productId') || 'DX1000029'
     const data = {
+      rname: formOutput.name,
       orderProv: addressInfos[0],
       orderCity: addressInfos[1],
       orderDis: addressInfos[2],
@@ -185,9 +194,7 @@ const submitClickHandle = debounce(
       productId
     }
 
-    store.changeCreateOrder(data).then((res) => {
-      console.log(res)
-    })
+    store.changeCreateOrder(data)
   },
   300,
   true
