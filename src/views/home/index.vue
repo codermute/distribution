@@ -34,7 +34,7 @@
     <div class="content-box">
       <headTltle title="热销特惠产品" />
       <div class="pro-list">
-        <template v-for="item in 2" :key="item">
+        <template v-for="item in 1" :key="item">
           <productItem :item="item" />
         </template>
       </div>
