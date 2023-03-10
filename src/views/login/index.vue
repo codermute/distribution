@@ -30,7 +30,7 @@
             </template>
           </div>
         </template>
-        <a class="su-btn" @click="login">注册</a>
+        <a class="su-btn" @click="login">登录</a>
       </div>
       <div class="login-tips">
         <div class="loging-tops-tit"><span>注册的好处</span></div>

@@ -10,11 +10,11 @@ export const formList = [
     field: 'code',
     img: require('@/assets/images/icon-img3.png'),
     type: 'text'
-  },
-  {
-    placeholder: '请填写推荐人手机号码',
-    field: 'recommend',
-    img: require('@/assets/images/icon-img4.png'),
-    type: 'number'
   }
+  // {
+  //   placeholder: '请填写推荐人手机号码',
+  //   field: 'recommend',
+  //   img: require('@/assets/images/icon-img4.png'),
+  //   type: 'number'
+  // }
 ]
