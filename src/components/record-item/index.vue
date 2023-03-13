@@ -1,6 +1,6 @@
 <template>
   <div class="record-item">
-    <div class="record-num">{{ num }}</div>
+    <div class="record-num">{{ num ?? '0.00' }}</div>
     <div class="record-name">{{ name }}</div>
   </div>
 </template>
