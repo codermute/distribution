@@ -35,3 +35,30 @@ const keys = ref([])
 
 keys.value = props.propList.map((item) => item.prop)
 </script>
+
+<style scoped>
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  background: #fff;
+  overflow: hidden;
+  border-top: solid 1px #dedcdc;
+  border-right: solid 1px #dedcdc;
+}
+.table tr td,
+.table tr th {
+  padding: 0.1rem 0;
+  text-align: center;
+  border-bottom: solid 1px #dedcdc;
+  border-left: solid 1px #dedcdc;
+}
+.table tr th {
+  background: #fb8421;
+  color: #fff;
+  font-weight: 400;
+}
+.table tr td {
+  background: #fff;
+  font-size: 0.24rem;
+}
+</style>

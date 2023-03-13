@@ -343,26 +343,7 @@ img {
   padding: 0.15rem 0;
   margin-top: 0.2rem;
 }
-.record-item {
-  float: left;
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  border-right: solid 1px #90daff;
-  margin: 0.15rem 0;
-  color: #fff;
-}
-.record-item:nth-child(2n) {
-  border: 0;
-}
-.record-num {
-  font-size: 0.4rem;
-}
-.record-name {
-  margin-top: 0.1rem;
-}
+
 .nav-box {
   padding: 0.3rem;
   background: #fff;
@@ -387,67 +368,7 @@ img {
 .content-box {
   padding: 0.3rem;
 }
-.pro-item {
-  display: flex;
-  align-items: center;
-  padding: 0.2rem;
-  background: #fff;
-  margin-bottom: 0.2rem;
-  border-radius: 0.2rem;
-}
-.pro-img {
-  width: 1.8rem;
-  border-radius: 0.15rem;
-}
-.pro-info {
-  flex: 1;
-  padding-left: 0.2rem;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-.pro-name {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.pro-name label {
-  font-size: 0.35rem;
-}
-.pro-detaile-btn {
-  color: #f38431;
-  font-size: 0.26rem;
-}
-.pro-text {
-  color: #666;
-  margin: 0.1rem 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-.pro-btn-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 0.1rem;
-}
-.pro-btn {
-  display: inline-flex;
-  align-items: center;
-  font-size: 0.24rem;
-  background: #f38431;
-  border-radius: 0.4rem;
-  padding: 0 0.3rem;
-  height: 0.45rem;
-  color: #fff;
-  margin-right: 0.1rem;
-}
-.pro-btn img {
-  width: 0.25rem;
-  height: 0.25rem;
-}
+
 .index-tips {
   padding: 0 0.3rem;
   color: #666;
@@ -473,30 +394,7 @@ img {
 .cpn-info span {
   color: #fb8421;
 }
-.table {
-  border-collapse: collapse;
-  width: 100%;
-  background: #fff;
-  overflow: hidden;
-  border-top: solid 1px #dedcdc;
-  border-right: solid 1px #dedcdc;
-}
-.table tr td,
-.table tr th {
-  padding: 0.1rem 0;
-  text-align: center;
-  border-bottom: solid 1px #dedcdc;
-  border-left: solid 1px #dedcdc;
-}
-.table tr th {
-  background: #fb8421;
-  color: #fff;
-  font-weight: 400;
-}
-.table tr td {
-  background: #fff;
-  font-size: 0.24rem;
-}
+
 .tg-moreBtn {
   display: flex;
   align-items: center;
@@ -522,22 +420,6 @@ img {
 .total {
   padding: 0.05rem 0.2rem;
   color: #fb8421;
-}
-
-/*海报*/
-.hb-bg {
-  background: #6ad0ff;
-}
-.hb-box {
-  position: relative;
-}
-.ewm-img {
-  width: 1.6rem;
-  height: 1.6rem;
-  z-index: 9;
-  position: absolute;
-  right: 0.75rem;
-  bottom: 1.35rem;
 }
 
 /*弹窗*/

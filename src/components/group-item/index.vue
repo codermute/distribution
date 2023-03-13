@@ -1,5 +1,5 @@
 <template>
-  <div class="group-item">
+  <div class="group-item" @click="router.push('/details')">
     <div class="group-order">
       单号125383710443<img src="@/assets/images/icon-copy.png" />
     </div>
@@ -15,6 +15,12 @@
     <a class="group-tell"><img src="@/assets/images/icon-tel.png" /> </a>
   </div>
 </template>
+
+<script setup>
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+</script>
 
 <style scoped>
 .group-item {

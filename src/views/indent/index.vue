@@ -44,8 +44,8 @@
           <img class="select-arrow" src="@/assets/images/arrow-bottom.png" />
           <select class="select">
             <option style="display: none">状态</option>
-            <option>1</option>
-            <option>2</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
           </select>
         </div>
       </div>
@@ -77,6 +77,9 @@ import { Calendar } from 'vant'
 import tabControl from '@/components/tab-control'
 import groupItem from '@/components/group-item'
 import headTitle from '@/components/head-title'
+import useTltle from '@/hooks/useTitle.js'
+
+useTltle('我的订单')
 
 const currentIndex = ref(0)
 const date = ref('')
@@ -153,6 +156,7 @@ const confirmClick = (value) => {
   font-size: 0.26rem;
   -webkit-appearance: none;
   appearance: none;
+  border: none;
 }
 .input.active,
 .select.active {
