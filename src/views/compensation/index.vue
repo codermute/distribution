@@ -26,12 +26,68 @@
           <template #createTime="{ row }">
             {{ dayjs(row.createTime).format('YYYY-MM-DD') }}</template
           >
+          <template #kickbackType="{ row }">
+            {{
+              row.kickbackType == '1'
+                ? '推广员首次佣金'
+                : row.kickbackType == '2'
+                ? '激活金额'
+                : row.kickbackType == '3'
+                ? '首充奖励金额'
+                : row.kickbackType == '4'
+                ? '在网一月奖励'
+                : row.kickbackType == '5'
+                ? '在网两月奖励'
+                : row.kickbackType == '6' && '在网三月奖励'
+            }}
+          </template>
+          <template #kickbackState="{ row }">
+            {{
+              row.kickbackState == '0'
+                ? '待发放'
+                : row.kickbackState == '1'
+                ? '符合条件待审核'
+                : row.kickbackState == '2'
+                ? '已经发放'
+                : '审核不通过'
+            }}
+          </template>
         </hlTable>
         <div class="total">合计：{{ developTotal }}元</div>
       </div>
       <headTitle title="我的商机(促成订单激活充值在网可获得酬金)" />
       <div class="cpn-table" v-if="store.businessList.length">
-        <hlTable :propList="propList" :listData="store.businessList" />
+        <hlTable :propList="propList" :listData="store.businessList">
+          <template #createTime="{ row }">
+            {{ dayjs(row.createTime).format('YYYY-MM-DD') }}</template
+          >
+          <template #kickbackType="{ row }">
+            {{
+              row.kickbackType == '1'
+                ? '推广员首次佣金'
+                : row.kickbackType == '2'
+                ? '激活金额'
+                : row.kickbackType == '3'
+                ? '首充奖励金额'
+                : row.kickbackType == '4'
+                ? '在网一月奖励'
+                : row.kickbackType == '5'
+                ? '在网两月奖励'
+                : row.kickbackType == '6' && '在网三月奖励'
+            }}
+          </template>
+          <template #kickbackState="{ row }">
+            {{
+              row.kickbackState == '0'
+                ? '待发放'
+                : row.kickbackState == '1'
+                ? '符合条件待审核'
+                : row.kickbackState == '2'
+                ? '已经发放'
+                : '审核不通过'
+            }}
+          </template>
+        </hlTable>
         <div class="total">合计：{{ businessTotal }}元</div>
       </div>
       <p>备注:订单详情请去我的订单页面查看</p>
