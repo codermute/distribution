@@ -5,16 +5,19 @@
     </div>
     <div class="order-details">
       <div class="order-row">
-        <label>订单号：</label><span>000123435667</span>
+        <label>订单号：</label><span>{{ store.orderInfo.orderId }}</span>
       </div>
       <div class="order-row"><label>订单来源：</label><span>自发展</span></div>
       <div class="order-row"><label>订单状态：</label><span>已作废</span></div>
       <div class="order-row"><label>充值：</label><span>是</span></div>
       <div class="order-row"><label>物流状态：</label><span>已发货</span></div>
       <div class="order-row"><label>作废原因：</label><span>*****</span></div>
-      <div class="order-row"><label>收货人姓名：</label><span>林**</span></div>
       <div class="order-row">
-        <label>收货人电话：</label><span>18900000000</span>
+        <label>收货人姓名：</label><span>{{ store.orderInfo.custName }}</span>
+      </div>
+      <div class="order-row">
+        <label>收货人电话：</label
+        ><span>{{ store.orderInfo.orderMobile }}</span>
       </div>
     </div>
     <div class="order-details-tit">
@@ -23,7 +26,7 @@
     <div class="order-details">
       <div class="order-row">
         <label>已到账：</label><span>15元</span
-        ><em class="color-red">已到账</em>
+        ><em class="color-green">已到账</em>
       </div>
       <div class="order-row">
         <label>激活奖励：</label><span>15元</span
@@ -35,7 +38,7 @@
       </div>
       <div class="order-row">
         <label>在网1个月奖励：</label><span>15元</span
-        ><em class="color-red">已到账</em>
+        ><em class="color-green">已到账</em>
       </div>
       <div class="order-row">
         <label>在网2个月奖励：</label><span>15元</span
@@ -53,11 +56,21 @@
 </template>
 
 <script setup>
-import headTitle from '@/components/head-title'
+import { useRoute } from 'vue-router'
 
+import { useDetailStore } from '@/store'
 import useTltle from '@/hooks/useTitle.js'
 
+import headTitle from '@/components/head-title'
+
 useTltle('订单详情')
+
+const route = useRoute()
+const store = useDetailStore()
+
+const id = route.params.id
+
+store.getOrderById({ id })
 </script>
 
 <style scoped>

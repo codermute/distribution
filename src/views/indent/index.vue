@@ -5,9 +5,11 @@
         <div class="search-item">
           <img class="icon" src="@/assets/images/icon-search.png" />
           <input
-            type="text"
+            type="number"
             placeholder="搜索下单手机号/手机后四位"
             class="input"
+            v-model="phone"
+            @input="search"
           />
         </div>
       </div>
@@ -36,28 +38,39 @@
           <img class="select-arrow" src="@/assets/images/arrow-bottom.png" />
           <select class="select">
             <option style="display: none">办理来源</option>
-            <option>1</option>
-            <option>2</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
           </select>
         </div>
         <div class="search-item">
           <img class="select-arrow" src="@/assets/images/arrow-bottom.png" />
-          <select class="select">
-            <option style="display: none">状态</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
+          <select class="select" v-model="logisState" @change="getPage">
+            <option value="" style="display: none">状态</option>
+            <option value="sysn_wait">待更新</option>
+            <option value="10">已揽件</option>
+            <option value="20">已经签收</option>
+            <option value="30">拒签</option>
           </select>
         </div>
       </div>
     </div>
     <div class="group-list">
-      <groupItem />
+      <template v-if="store.selfOrderList.length">
+        <template v-for="item in store.selfOrderList" :key="item.thProductNo">
+          <groupItem :item="item" />
+        </template>
+      </template>
+      <template v-else>
+        <empty description="暂无数据" />
+      </template>
     </div>
     <div class="order-bottom">
       <headTitle title="分享我的专属推广链接，获得更多收益" />
       <div class="share-row">
-        <template v-for="item in shareList" :key="item">
-          <a class="share-item">{{ item }}</a>
+        <template v-for="item in shareList" :key="item.name">
+          <a class="share-item" @click="shareClickHandle(item.path)">{{
+            item.name
+          }}</a>
         </template>
       </div>
     </div>
@@ -72,7 +85,12 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Calendar } from 'vant'
+import { useRouter } from 'vue-router'
+import { Calendar, Empty } from 'vant'
+import { useIndentStore } from '@/store'
+
+import { shareList } from './config'
+import { debounce } from '@/utils'
 
 import tabControl from '@/components/tab-control'
 import groupItem from '@/components/group-item'
@@ -81,20 +99,64 @@ import useTltle from '@/hooks/useTitle.js'
 
 useTltle('我的订单')
 
-const currentIndex = ref(0)
+const router = useRouter()
+const store = useIndentStore()
+
+const phone = ref('')
+const logisState = ref('')
+const thOrderState = ref('sysn_wait')
 const date = ref('')
+const currentIndex = ref(0)
 const isCalendarShow = ref(false)
 
 const tabList = ['未激活', '已激活', '已作废']
-const shareList = ['办卡推广', '充话费', '代办卡']
 
-const itemClick = (index) => (currentIndex.value = index)
+getPage()
 
 const formatDate = (date) =>
   `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
 const confirmClick = (value) => {
   isCalendarShow.value = false
   date.value = formatDate(value)
+  getPage()
+}
+
+const search = debounce(
+  () => {
+    getPage()
+  },
+  300,
+  true
+)
+const itemClick = (index) => {
+  currentIndex.value = index
+  switch (currentIndex.value) {
+    case 0:
+      thOrderState.value = 'sysn_wait'
+      break
+    case 1:
+      thOrderState.value = 'activity'
+      break
+    case 2:
+      thOrderState.value = 'activity_error'
+      break
+  }
+  getPage()
+}
+
+function getPage() {
+  const options = {
+    orderMobile: phone.value,
+    logisState: logisState.value,
+    thOrderState: thOrderState.value,
+    date: date.value
+  }
+
+  store.getOrderMessage(options)
+}
+function shareClickHandle(path) {
+  if (path) return router.push(`/${path}`)
+  window.location.href = 'http://flow.hn.189.cn/hnfx/hd/hlwkczindex'
 }
 </script>
 
@@ -185,6 +247,7 @@ const confirmClick = (value) => {
 }
 
 .group-list {
+  margin-bottom: 2rem;
   padding: 0.3rem;
 }
 

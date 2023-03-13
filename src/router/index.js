@@ -41,7 +41,7 @@ const routes = [
     component: () => import('@/views/order')
   },
   {
-    path: '/details',
+    path: '/details/:id',
     name: 'Details',
     component: () => import('@/views/details')
   }

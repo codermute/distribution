@@ -9,10 +9,9 @@ export const useIndentStore = defineStore({
     selfOrderList: []
   }),
   actions: {
-    async getOrderMessage() {
-      const res = await getOrderMessage()
+    async getOrderMessage(payload) {
+      const res = await getOrderMessage(payload)
       if (res.code) return showToast(res.message)
-      // console.log(res)
       this.selfOrderList = res.data.list
     }
   }

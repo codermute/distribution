@@ -1,25 +1,57 @@
 <template>
-  <div class="group-item" @click="router.push('/details')">
+  <div class="group-item" @click="router.push(`/details/${item.orderId}`)">
     <div class="group-order">
-      单号125383710443<img src="@/assets/images/icon-copy.png" />
+      单号{{ item.orderId }}<img src="@/assets/images/icon-details.png" />
     </div>
-    <div class="group-name">林林**</div>
+    <div class="group-name">{{ item.custName }}</div>
     <div class="group-source">
       <label><img src="@/assets/images/icon-qd.png" />线上单</label
-      ><label><img src="@/assets/images/icon-yj.png" />激活收益18.87元</label>
+      ><label>
+        <img src="@/assets/images/icon-yj.png" />激活收益{{ earnings }}元
+      </label>
     </div>
     <div class="group-time">
-      <label>下单时间 2023-03-03 14:55:18</label><span>激活剩余30天</span>
+      <label>下单时间 {{ item.createTime }}</label
+      ><span>激活剩余{{ distanceTime }}天</span>
     </div>
-    <div class="group-status">已发货未激活</div>
+    <div class="group-status">已发货{{ status }}</div>
     <a class="group-tell"><img src="@/assets/images/icon-tel.png" /> </a>
   </div>
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
+import dayjs from 'dayjs'
+
+const props = defineProps({
+  item: {
+    type: Object,
+    default: () => {}
+  }
+})
 
 const router = useRouter()
+
+const earnings = computed(() =>
+  props.item.kickbackRespList.reduce((pre, cur) => {
+    if (cur.kickbackState == 2) {
+      return pre + cur.kickbackMoney
+    }
+    return pre + 0
+  }, 0)
+)
+const status = computed(() =>
+  props.item.thOrderState === 'sysn_wait'
+    ? '未激活'
+    : props.item.thOrderState === 'activity'
+    ? '已激活'
+    : props.item.thOrderState === 'activity_error' && '激活失败'
+)
+const distanceTime = computed(() => {
+  const endTime = dayjs(props.item.createTime).add(35, 'day')
+  return dayjs(endTime).diff(new Date(), 'day')
+})
 </script>
 
 <style scoped>
