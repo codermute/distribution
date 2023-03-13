@@ -120,6 +120,9 @@ store.getOrderById({ id })
 .color-red {
   color: #d30327 !important;
 }
+.color-green {
+  color: #4fc !important;
+}
 .color-blue {
   color: #0078ff !important;
 }
