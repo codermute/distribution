@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { showToast } from 'vant'
 
-import { getMemberMoneyDetail } from '@/service'
+import { getMemberMoneyDetail, getProductList } from '@/service'
 
 export const useHomeStore = defineStore({
   id: 'home',
@@ -13,6 +13,10 @@ export const useHomeStore = defineStore({
       const res = await getMemberMoneyDetail()
       if (res.code) return showToast(res.message)
       this.balanceInfo = res.data
+    },
+    async getProductList() {
+      const res = await getProductList()
+      console.log(res)
     }
   }
 })

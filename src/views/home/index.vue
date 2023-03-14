@@ -34,8 +34,13 @@
     <div class="content-box">
       <headTltle title="热销特惠产品" />
       <div class="pro-list">
-        <template v-for="item in 1" :key="item">
-          <productItem :item="item" />
+        <template v-if="true">
+          <template v-for="item in 1" :key="item">
+            <productItem :item="item" />
+          </template>
+        </template>
+        <template v-else>
+          <empty description="暂无数据" />
         </template>
       </div>
     </div>
@@ -54,6 +59,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { Empty } from 'vant'
 import { useHomeStore } from '@/store'
 
 import { menuList } from './config'
@@ -70,6 +76,7 @@ const router = useRouter()
 const store = useHomeStore()
 
 store.getMemberBalance()
+store.getProductList()
 
 const isEarningShow = ref(false)
 

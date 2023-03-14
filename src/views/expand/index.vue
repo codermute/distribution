@@ -26,7 +26,6 @@
 </template>
 
 <script setup>
-import { useRoute } from 'vue-router'
 import { propList, listData } from './config'
 import useTltle from '@/hooks/useTitle.js'
 
@@ -34,10 +33,6 @@ import headTitle from '@/components/head-title'
 import hlTable from '@/components/hl-table'
 
 useTltle('推广赚钱')
-
-const route = useRoute()
-
-console.log(route.params)
 </script>
 
 <style>

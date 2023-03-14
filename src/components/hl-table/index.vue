@@ -38,6 +38,9 @@ watch(
   () => props.listData,
   (newValue) => {
     listInfo.value = [...newValue]
+  },
+  {
+    immediate: true
   }
 )
 
