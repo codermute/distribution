@@ -3,15 +3,14 @@
     <img class="pro-img" src="@/assets/images/pro-img.png" />
     <div class="pro-info">
       <div class="pro-name">
-        <label>19星卡</label>
+        <label>{{ item.dissName }}</label>
         <a class="pro-detaile-btn">套餐详情>></a>
       </div>
-      <div class="pro-text">
-        说明:套餐资费19元/月，每月30GB定向流量+65G全国通用流量，可参与充50送120活
-      </div>
+      <div class="pro-text">说明:{{ item.productRemark }}</div>
       <div class="pro-btn-row">
-        <!-- <a class="pro-btn"><img src="@/assets/images/icon-pro1.png" />链接</a>
-        <a class="pro-btn"><img src="@/assets/images/icon-pro2.png" />页面</a> -->
+        <a class="pro-btn"><img src="@/assets/images/icon-pro1.png" />链接</a>
+        <span class="pro-btn">复制链接</span>
+        <!-- <a class="pro-btn"><img src="@/assets/images/icon-pro2.png" />页面</a> -->
       </div>
     </div>
   </div>
@@ -19,6 +18,13 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
+
+defineProps({
+  item: {
+    type: Object,
+    default: () => {}
+  }
+})
 
 const router = useRouter()
 

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useLoginStore } from '@/store'
 import { baseURL, TIMEOUT, baseURL_static } from './config'
 
 class Request {
@@ -10,6 +11,13 @@ class Request {
 
     this.instance.interceptors.request.use(
       (config) => {
+        const store = useLoginStore()
+
+        const token = store.token
+        if (!config.baseURL.includes('static')) {
+          config.headers['Authorization'] = token
+        }
+
         return config
       },
       (err) => {

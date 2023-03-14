@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white">
     <div class="main-box">
-      <div class="login-top"><img src="@/assets/images/login-ban.jpg" /></div>
+      <div class="login-top"><img src="@/assets/images/zc1.png" /></div>
       <div class="rw-info">
         <template v-for="item in formList" :key="item.field">
           <div class="form-group">
@@ -30,7 +30,7 @@
             </template>
           </div>
         </template>
-        <a class="su-btn" @click="login">登录</a>
+        <a class="su-btn" @click="login">注册</a>
       </div>
       <div class="login-tips">
         <div class="loging-tops-tit"><span>注册的好处</span></div>
@@ -47,7 +47,7 @@ import { CountDown, showToast } from 'vant'
 import { useLoginStore } from '@/store'
 
 import { formList } from './config'
-import { debounce } from '@/utils'
+import { debounce, getUrlSearch } from '@/utils'
 import useTltle from '@/hooks/useTitle.js'
 
 const store = useLoginStore()
@@ -56,11 +56,14 @@ useTltle('注册')
 
 const formOutput = reactive({
   phone: '',
-  code: '',
-  recommend: ''
+  code: ''
 })
 const countDownRef = ref(null)
 const isCountDown = ref(false)
+
+const code = getUrlSearch('code') || '0517rpll2NOmXa4L48nl2WCgqW17rplj'
+const agentId = getUrlSearch('agentId') || 'dada'
+const memberId = getUrlSearch('getUrlSearch')
 
 const startClick = () => {
   countDownRef.value[0].start()
@@ -76,10 +79,18 @@ const login = debounce(
     if (!store.phoneReg.test(formOutput.phone))
       return showToast('请输入有效手机号码')
     if (!formOutput.code) return showToast('请填写验证码')
-    if (!store.phoneReg.test(formOutput.recommend))
-      return showToast('请输入有效推荐人手机号码')
 
-    console.log({ ...formOutput })
+    // store.login({ ...formOutput })
+    const options = {
+      memberPhone: formOutput.phone,
+      smscode: formOutput.code,
+      agentId,
+      memberId,
+      code
+    }
+
+    store.changeProLogin(options)
+    // store.changeDistLogin(options)
   },
   300,
   true

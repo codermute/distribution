@@ -3,14 +3,18 @@
     <div class="top-box">
       <div class="top-row">
         <div class="head-box" id="gzBtn">
-          <img src="@/assets/images/head.png" />
+          <img :src="loginStore.userInfo.memberAvatar" />
         </div>
         <div class="top-info">
-          <div class="name-row">张三</div>
-          <p>等级:推广员</p>
+          <div class="name-row">{{ loginStore.userInfo.memberUsername }}</div>
+          <p>
+            等级:{{
+              loginStore.userInfo.userType === 'agent' ? '推广员' : '分销员'
+            }}
+          </p>
         </div>
         <div class="top-right">
-          <a class="bind-btn">绑定微信领酬金</a>
+          <!-- <a class="bind-btn" @click="changeBind">绑定微信领酬金</a> -->
           <a class="income-text" @click="isEarningShow = true" id="incomeBtn"
             >如何提升收益?</a
           >
@@ -34,8 +38,8 @@
     <div class="content-box">
       <headTltle title="热销特惠产品" />
       <div class="pro-list">
-        <template v-if="true">
-          <template v-for="item in 1" :key="item">
+        <template v-if="store.productList.length">
+          <template v-for="item in store.productList" :key="item.userId">
             <productItem :item="item" />
           </template>
         </template>
@@ -60,7 +64,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { Empty } from 'vant'
-import { useHomeStore } from '@/store'
+import { useHomeStore, useLoginStore } from '@/store'
 
 import { menuList } from './config'
 import useTltle from '@/hooks/useTitle.js'
@@ -74,17 +78,57 @@ useTltle('裂变活动')
 
 const router = useRouter()
 const store = useHomeStore()
+const loginStore = useLoginStore()
 
 store.getMemberBalance()
 store.getProductList()
 
 const isEarningShow = ref(false)
 
+// const changeBind = () => {
+//   const { openId, memberId, memberUsername, memberAvatar, userType } =
+//     loginStore.userInfo
+//   const options = {
+//     openId,
+//     memberId,
+//     name: memberUsername,
+//     memberAvatar,
+//     type: userType
+//   }
+
+//   store.changeBindOpenId(options)
+// }
+
 function menuClickHandle(path) {
   router.push(`/${path}`)
 }
 </script>
 
-<style>
+<style scoped>
 @import '../../assets/css/home/style.css';
+.nav-box {
+  padding: 0.3rem;
+  background: #fff;
+  border-radius: 0.2rem;
+  margin: -1rem 0.2rem 0;
+}
+.nav-item {
+  float: left;
+  width: 25%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.nav-item img {
+  width: 0.8rem;
+  height: 0.8rem;
+  margin-bottom: 0.1rem;
+}
+
+.index-tips {
+  padding: 0 0.3rem;
+  color: #666;
+}
 </style>

@@ -125,17 +125,6 @@ store.getSelectSumMoney()
 homeStore.getMemberBalance()
 
 const isEarningShow = ref(false)
-
-// const developTotal = computed(() =>
-//   store.developList.reduce((pre, cur) => {
-//     return pre + cur.kickbackMoney
-//   }, 0)
-// )
-// const businessTotal = computed(() =>
-//   store.businessList.reduce((pre, cur) => {
-//     return pre + cur.kickbackMoney
-//   }, 0)
-// )
 </script>
 
 <style>

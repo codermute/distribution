@@ -344,34 +344,8 @@ img {
   margin-top: 0.2rem;
 }
 
-.nav-box {
-  padding: 0.3rem;
-  background: #fff;
-  border-radius: 0.2rem;
-  margin: -1rem 0.2rem 0;
-}
-.nav-item {
-  float: left;
-  width: 25%;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-.nav-item img {
-  width: 0.8rem;
-  height: 0.8rem;
-  margin-bottom: 0.1rem;
-}
-
 .content-box {
   padding: 0.3rem;
-}
-
-.index-tips {
-  padding: 0 0.3rem;
-  color: #666;
 }
 
 .cpn-info {

@@ -2,7 +2,8 @@
   <div class="hb-bg">
     <div class="main-box">
       <div class="hb-box">
-        <img class="ewm-img" src="@/assets/images/ewm-img.jpg" />
+        <!-- <img class="ewm-img" src="@/assets/images/ewm-img.jpg" /> -->
+        <qrcode-vue class="ewm-img" :value="url" :size="80"></qrcode-vue>
         <img src="@/assets/images/hb-bg.png" />
       </div>
     </div>
@@ -10,9 +11,19 @@
 </template>
 
 <script setup>
+import QrcodeVue from 'qrcode.vue'
+import { useLoginStore } from '@/store'
+
 import useTltle from '@/hooks/useTitle.js'
 
 useTltle('分享海报')
+
+const store = useLoginStore()
+
+const agentId = store.userInfo.agentId
+const memberId = store.userInfo.memberId
+
+const url = `https://wx.hn.189.cn/hnimgs/wx_view/fx/index.html?agentId=${agentId}&memberId=${memberId}`
 </script>
 
 <style scoped>

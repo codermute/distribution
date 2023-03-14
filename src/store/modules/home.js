@@ -1,12 +1,17 @@
 import { defineStore } from 'pinia'
 import { showToast } from 'vant'
 
-import { getMemberMoneyDetail, getProductList } from '@/service'
+import {
+  getMemberMoneyDetail,
+  getProductList,
+  changeBindOpenId
+} from '@/service'
 
 export const useHomeStore = defineStore({
   id: 'home',
   state: () => ({
-    balanceInfo: {}
+    balanceInfo: {},
+    productList: []
   }),
   actions: {
     async getMemberBalance() {
@@ -16,7 +21,12 @@ export const useHomeStore = defineStore({
     },
     async getProductList() {
       const res = await getProductList()
-      console.log(res)
+      if (res.code) return showToast(res.message)
+      this.productList = res.data
+    },
+    async changeBindOpenId(payload) {
+      const res = await changeBindOpenId(payload)
+      console.log(res, '----')
     }
   }
 })
