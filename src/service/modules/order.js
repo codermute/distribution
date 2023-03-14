@@ -1,8 +1,8 @@
-import Request from '../request'
+import { RequestStatic } from '../request'
 
 // 资格校验
 export function changeAuthentication(data) {
-  return Request.post({
+  return RequestStatic.post({
     url: '/dist-order/checkOrder',
     data
   })
@@ -10,7 +10,7 @@ export function changeAuthentication(data) {
 
 // 创建订单
 export function createOrder(data) {
-  return Request.post({
+  return RequestStatic.post({
     url: '/dist-order/saveOrder',
     data
   })

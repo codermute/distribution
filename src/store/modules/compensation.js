@@ -1,14 +1,20 @@
 import { defineStore } from 'pinia'
 import { showToast } from 'vant'
 
-import { getPageActivity, getDevSupport, getDevNoSupport } from '@/service'
+import {
+  getPageActivity,
+  getDevSupport,
+  getDevNoSupport,
+  getSelectSumMoney
+} from '@/service'
 
 export const useComStore = defineStore({
   id: 'compensation',
   state: () => ({
     activityList: [],
     developList: [],
-    businessList: []
+    businessList: [],
+    sumMoneyInfo: {}
   }),
   actions: {
     async getActivityList() {
@@ -25,6 +31,11 @@ export const useComStore = defineStore({
         if (res.code) return showToast(res.message)
         this.businessList = res.data.list
       })
+    },
+    async getSelectSumMoney() {
+      const res = await getSelectSumMoney()
+      if (res.code) return showToast(res.message)
+      this.sumMoneyInfo = res.data
     }
   }
 })

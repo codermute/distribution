@@ -21,7 +21,7 @@
     </div>
     <div class="content-box">
       <headTitle title="我的发展酬金" />
-      <div class="cpn-table" v-if="store.developList.length">
+      <div class="cpn-table">
         <hlTable :propList="propList" :listData="store.developList">
           <template #createTime="{ row }">
             {{ dayjs(row.createTime).format('YYYY-MM-DD') }}</template
@@ -53,10 +53,10 @@
             }}
           </template>
         </hlTable>
-        <div class="total">合计：{{ developTotal }}元</div>
+        <div class="total">合计：{{ store.sumMoneyInfo.zyMoney || 0 }}元</div>
       </div>
       <headTitle title="我的商机(促成订单激活充值在网可获得酬金)" />
-      <div class="cpn-table" v-if="store.businessList.length">
+      <div class="cpn-table">
         <hlTable :propList="propList" :listData="store.businessList">
           <template #createTime="{ row }">
             {{ dayjs(row.createTime).format('YYYY-MM-DD') }}</template
@@ -88,7 +88,7 @@
             }}
           </template>
         </hlTable>
-        <div class="total">合计：{{ businessTotal }}元</div>
+        <div class="total">合计：{{ store.sumMoneyInfo.noZyMoney || 0 }}元</div>
       </div>
       <p>备注:订单详情请去我的订单页面查看</p>
     </div>
@@ -102,7 +102,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { useComStore, useHomeStore } from '@/store'
 import dayjs from 'dayjs'
 
@@ -121,20 +121,21 @@ const homeStore = useHomeStore()
 
 // store.getActivityList()
 store.getCommission()
+store.getSelectSumMoney()
 homeStore.getMemberBalance()
 
 const isEarningShow = ref(false)
 
-const developTotal = computed(() =>
-  store.developList.reduce((pre, cur) => {
-    return pre + cur.kickbackMoney
-  }, 0)
-)
-const businessTotal = computed(() =>
-  store.businessList.reduce((pre, cur) => {
-    return pre + cur.kickbackMoney
-  }, 0)
-)
+// const developTotal = computed(() =>
+//   store.developList.reduce((pre, cur) => {
+//     return pre + cur.kickbackMoney
+//   }, 0)
+// )
+// const businessTotal = computed(() =>
+//   store.businessList.reduce((pre, cur) => {
+//     return pre + cur.kickbackMoney
+//   }, 0)
+// )
 </script>
 
 <style>

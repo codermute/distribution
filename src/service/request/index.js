@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { baseURL, TIMEOUT } from './config'
+import { baseURL, TIMEOUT, baseURL_static } from './config'
 
 class Request {
   constructor(baseURL) {
@@ -39,5 +39,7 @@ class Request {
     return this.request({ ...config, method: 'post' })
   }
 }
+
+export const RequestStatic = new Request(baseURL_static)
 
 export default new Request(baseURL)

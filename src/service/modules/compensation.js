@@ -20,3 +20,10 @@ export function getDevNoSupport() {
     url: '/dist-kickback/memberPage'
   })
 }
+
+// 查询自营和非自营发放佣金合计
+export function getSelectSumMoney() {
+  return Request.get({
+    url: '/dist-kickback/selectSumMoney'
+  })
+}

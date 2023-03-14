@@ -6,7 +6,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="item in listData" :key="item">
+      <tr v-for="item in listInfo" :key="item">
         <td v-for="key in keys" :key="key">
           <slot :name="key" :row="item">
             {{ item[key] || '--' }}
@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 const props = defineProps({
   propList: {
@@ -31,7 +31,15 @@ const props = defineProps({
   }
 })
 
+const listInfo = ref([])
 const keys = ref([])
+
+watch(
+  () => props.listData,
+  (newValue) => {
+    listInfo.value = [...newValue]
+  }
+)
 
 keys.value = props.propList.map((item) => item.prop)
 </script>
