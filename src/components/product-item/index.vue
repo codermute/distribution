@@ -8,8 +8,13 @@
       </div>
       <div class="pro-text">说明:{{ item.productRemark }}</div>
       <div class="pro-btn-row">
-        <a class="pro-btn"><img src="@/assets/images/icon-pro1.png" />链接</a>
-        <span class="pro-btn">复制链接</span>
+        <template v-if="store.userInfo.userTyp === 'member'">
+          <a class="pro-btn"><img src="@/assets/images/icon-pro1.png" />链接</a>
+          <span class="pro-btn" @click.stop="copy" :data-clipboard-text="url"
+            >复制链接</span
+          >
+        </template>
+
         <!-- <a class="pro-btn"><img src="@/assets/images/icon-pro2.png" />页面</a> -->
       </div>
     </div>
@@ -18,6 +23,9 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
+import Clipboard from 'clipboard'
+import { useLoginStore } from '@/store'
+import { showToast } from 'vant'
 
 defineProps({
   item: {
@@ -27,6 +35,23 @@ defineProps({
 })
 
 const router = useRouter()
+const store = useLoginStore()
+
+const url = 'https://wx.hn.189.cn/hnimgs/wx_view/fx/index.html?route=order'
+
+const copy = () => {
+  let clipboard = new Clipboard('.copy')
+  clipboard.on('success', () => {
+    showToast('复制成功')
+    clipboard.destroy()
+  })
+  clipboard.on('error', (e) => {
+    // 不支持复制
+    console.log('该浏览器不支持自动复制', e)
+    // 释放内存
+    clipboard.destroy()
+  })
+}
 
 function itemClick() {
   router.push('/order')

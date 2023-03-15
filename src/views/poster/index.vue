@@ -23,7 +23,7 @@ const store = useLoginStore()
 const agentId = store.userInfo.agentId
 const memberId = store.userInfo.memberId
 
-const url = `https://wx.hn.189.cn/hnimgs/wx_view/fx/index.html?agentId=${agentId}&memberId=${memberId}`
+const url = `https://wx.hn.189.cn/hnimgs/wx_view/fx/index.html?agentId=${agentId}&memberId=${memberId}&route=login&type=${store.userInfo.userType}`
 </script>
 
 <style scoped>

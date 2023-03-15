@@ -64,6 +64,7 @@ const isCountDown = ref(false)
 const code = getUrlSearch('code') || '0517rpll2NOmXa4L48nl2WCgqW17rplj'
 const agentId = getUrlSearch('agentId') || 'dada'
 const memberId = getUrlSearch('getUrlSearch')
+const type = getUrlSearch('type')
 
 const startClick = () => {
   countDownRef.value[0].start()
@@ -89,8 +90,9 @@ const login = debounce(
       code
     }
 
-    store.changeProLogin(options)
-    // store.changeDistLogin(options)
+    type === 'member'
+      ? store.changeProLogin(options)
+      : type === 'agent' && store.changeDistLogin(options)
   },
   300,
   true

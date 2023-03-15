@@ -17,10 +17,17 @@ const routeName = getUrlSearch('route')
 initialize()
 
 function initialize() {
-  routeName === 'order'
-    ? router.replace('/order')
-    : !code
-    ? store.getCode()
-    : store.changeCodeLogin({ wxCode: code })
+  switch (routeName) {
+    case 'order':
+      router.replace('/order')
+      break
+    case 'login':
+      router.replace('/login')
+      !code ? store.getCode() : store.changeCodeLogin({ wxCode: code })
+      break
+    default:
+      !code ? store.getCode() : store.changeCodeLogin({ wxCode: code })
+      break
+  }
 }
 </script>
